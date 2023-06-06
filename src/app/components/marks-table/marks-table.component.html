@@ -1,0 +1,20 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+           
+            <th scope="col">Marks</th>
+            <th scope="col">Teacher Name</th>
+            <th scope="col">Teacher Speciality</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr >
+            <td >{{mark.mark}} </td>
+             <td>{{searchTeacher(mark.teacherId)?.firstName}} {{searchTeacher(mark.teacherId)?.lastName}} </td>
+            <td>{{searchTeacher(mark.teacherId)?.speciality}}</td> 
+             
+            
+           
+        </tr>
+    </tbody>
+</table>

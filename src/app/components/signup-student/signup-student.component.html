@@ -1,0 +1,108 @@
+<!-- Header Start -->
+<div class="container-fluid bg-primary mb-5">
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
+      style="min-height: 400px"
+    >
+      <h3 class="display-3 font-weight-bold text-white">Signup Student</h3>
+      <div class="d-inline-flex text-white">
+        <p class="m-0"><a class="text-white" href="">Home</a></p>
+        <p class="m-0 px-2">/</p>
+        <p class="m-0">Signup Student</p>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+  <div class="col-lg-7 mb-5 container">
+    <div class="contact-form">
+      <div id="success"></div>
+      <form [formGroup]="signupForm" >
+        <div class="control-group">
+          <input type="text" class="form-control" formControlName="firstName" placeholder="Your First Name"/>
+          <div *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].touched || signupForm.controls['firstName'].dirty)">
+            <div *ngIf="signupForm.controls['firstName'].errors.required" style="color: brown;">Name is required</div>
+            <div *ngIf="signupForm.controls['firstName'].errors.minlength" style="color: brown;">Name must have at least 3 chars</div>
+          </div>
+          <p class="help-block text-danger"></p>
+        </div>
+        <div class="control-group">
+            <input type="text" class="form-control" formControlName="lastName" placeholder="Your Last Name"/>
+            <div *ngIf="signupForm.controls['lastName'].invalid && 
+            (signupForm.controls['lastName'].touched || 
+            signupForm.controls['lastName'].dirty)">
+                <div *ngIf="signupForm.controls['lastName'].errors.required" style="color: red;">
+                    Last Name is required
+                </div>
+                <div *ngIf="signupForm.controls['lastName'].errors.minlength" style="color: red;">
+                    Last Name must have at least 5 chars
+                </div>
+            </div>
+            <p class="help-block text-danger"></p>
+          </div>
+          <div class="control-group">
+            <input type="email" class="form-control" formControlName="email" placeholder="Your email"/>
+           <div style="color: brown;">{{errorMsg}}</div>
+           <div *ngIf="signupForm.controls['email'].invalid && 
+           (signupForm.controls['email'].touched || 
+           signupForm.controls['email'].dirty)">
+               <div *ngIf="signupForm.controls['email'].errors.required" style="color: red;">
+                   Email is required
+               </div>
+               <div *ngIf="signupForm.controls['email'].errors.email" style="color: red;">
+                   Invalid Email Format
+               </div>
+              
+           </div>
+            <p class="help-block text-danger"></p>
+          </div>
+          <div class="control-group">
+            <input type="password" class="form-control" formControlName="pwd" placeholder="Your Password"/>
+            <div *ngIf="signupForm.controls['pwd'].invalid && 
+          (signupForm.controls['pwd'].touched || 
+          signupForm.controls['pwd'].dirty)">
+              <div *ngIf="signupForm.controls['pwd'].errors.required" style="color: red;">
+                  Password is required
+              </div>
+              <div *ngIf="signupForm.controls['pwd'].errors.minlength" style="color: red;">
+                  Password must have at least 6 chars
+              </div>
+              <div *ngIf="signupForm.controls['pwd'].errors.maxlength" style="color: red;">
+                  Password must have at most 12 chars
+              </div>
+          </div>
+            <p class="help-block text-danger"></p>
+          </div>
+          <div class="control-group">
+            <input type="tel" class="form-control" formControlName="tel" placeholder="Your Tel"/>
+           
+            <p class="help-block text-danger"></p>
+          </div>
+          <div class="control-group">
+            <input type="text" class="form-control" formControlName="adress"  placeholder="Your Address"/>
+          
+            <p class="help-block text-danger"></p>
+          </div>
+          <div class="control-group">
+            <select class="form-control" formControlName="level" >
+              <option selected>Please Select Your level</option>
+              <option value="1">1ére</option>
+              <option value="2">2emme</option>
+              <option value="3">3emme</option>
+            </select>
+          </div>
+          <div class="control-group" style="visibility: hidden;">
+            <input type="file" class="form-control" #filePicker (change)="onImageSelected($event)"/>
+            <p class="help-block text-danger"></p>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-warning" (click)="filePicker.click()">Select your avatar</button>
+          </div>
+      <img style="margin-left: 45%; margin-top: 2%;" [src]="imagePreview" *ngIf="imagePreview"  alt="">
+        
+        <div>
+          <button style="margin-left: 45%; margin-top: 5%;" class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton"
+         (click)="signupStudent()" [disabled]="signupForm.invalid">  Signup </button>
+        </div>
+      </form>
+    </div>
+  </div>

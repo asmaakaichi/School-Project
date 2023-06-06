@@ -1,0 +1,28 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Module</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let course of coursesTab">
+            <th scope="row">{{course._id}}</th>
+            <td>{{course.name}}</td>
+            <td>{{course.description}}</td>
+            <td>{{course.modules}}</td>
+           
+           
+            <td>
+            <button class="btn btn-info" (click)="goToDisplay(course._id)">Display</button>
+            <button class="btn btn-warning"(click)="goToEdit(course._id)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteCourse(course._id)">Delete</button>
+            </td>
+            </tr>
+            
+            
+    </tbody>
+</table>

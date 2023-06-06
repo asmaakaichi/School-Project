@@ -1,0 +1,47 @@
+<!-- Header Start -->
+<div class="container-fluid bg-primary mb-5">
+  <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+    <h3 class="display-3 font-weight-bold text-white">Login</h3>
+    <div class="d-inline-flex text-white">
+      <p class="m-0"><a class="text-white" href="">Home</a></p>
+      <p class="m-0 px-2">/</p>
+      <p class="m-0">Login</p>
+    </div>
+  </div>
+</div>
+<!-- Header End -->
+<div class="col-lg-7 mb-5 container">
+  <div class="contact-form">
+    <div id="success"></div>
+    <form #loginForm="ngForm" (ngSubmit)="signin() && loginForm.form.submitted">
+
+      <div class="control-group">
+        <input type="email" class="form-control" [(ngModel)]="login.email" name="email" placeholder="Your email">
+          
+        
+        <p class="help-block text-danger"></p>
+      </div>
+      <div class="control-group">
+        <input type="tel" class="form-control" [(ngModel)]="login.tel" name="tel" placeholder="Your Tel">
+        <p class="help-block text-danger"></p>
+      </div>
+      
+      <div class="control-group">
+        <input type="password" class="form-control" [(ngModel)]="login.pwd" name="pwd"
+           />
+        
+        <p class="help-block text-danger"></p>
+      </div>
+      <div>
+        <div>
+          <button style="margin-left: 45%;" class="btn btn-primary py-2 px-4" [disabled]="loginForm.invalid"
+            type="submit" id="sendMessageButton">
+            Login
+          </button>
+        </div>
+        <span style="color:red">{{error}}</span>
+        <span style="color:red">{{errorMsg}}</span>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<!-- Header Start -->
+<div class="container-fluid bg-primary mb-5">
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
+      style="min-height: 400px"
+    >
+      <h3 class="display-3 font-weight-bold text-white">Student Info and Affectation</h3>
+      <div class="d-inline-flex text-white">
+        <p class="m-0"><a class="text-white" href="">Home</a></p>
+        <p class="m-0 px-2">/</p>
+        <p class="m-0">Student Info and Affectation</p>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+  <div class="col-md-6 col-lg-3 text-center team mb-5 container">
+    <div
+      class="position-relative overflow-hidden mb-4"
+      style="border-radius: 100%"
+    >
+      <img class="img-fluid w-100" src="assets/img/team-1.jpg" alt="" />
+      <div
+        class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute"
+      >
+        <a
+          class="btn btn-outline-light text-center mr-2 px-0"
+          style="width: 38px; height: 38px"
+          href="#"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a
+          class="btn btn-outline-light text-center mr-2 px-0"
+          style="width: 38px; height: 38px"
+          href="#"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a
+          class="btn btn-outline-light text-center px-0"
+          style="width: 38px; height: 38px"
+          href="#"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+      </div>
+    </div>
+    <h4>{{student.firstName}} {{student.lastName}}</h4>
+    <i>Email: {{student.email}}</i>
+    <div>
+      <i>Tel: {{student.tel}}</i>
+    </div>
+   
+  </div>
+  <div class=" control-group container">
+<form #studentForm="ngForm" (ngSubmit)="validate()">
+  <select class="form-control" [(ngModel)]="student.teacherId" name="teacherId" >
+    <option selected>Please Choose teacher</option>
+    <option [value]="t.id" *ngFor="let t of teachersTab">{{t.firstName}} {{t.lastName}}</option>
+  </select>
+  <div class="control-group container">
+    <button type="submit" style="margin-left: 45%; margin-top: 5%;" class="btn btn-info"> validate</button>
+  </div>
+</form>
+  </div>

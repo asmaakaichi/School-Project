@@ -1,0 +1,9 @@
+.activeTeacher {
+    color: green;
+    font-size: 35px;
+}
+
+.notActiveTeacher {
+    color: brown;
+    font-size: 50px;
+}

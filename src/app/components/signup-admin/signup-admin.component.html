@@ -1,0 +1,88 @@
+<!-- Header Start -->
+<div class="container-fluid bg-primary mb-5">
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
+      style="min-height: 400px"
+    >
+      <h3 class="display-3 font-weight-bold text-white">Signup Admin</h3>
+      <div class="d-inline-flex text-white">
+        <p class="m-0"><a class="text-white" href="">Home</a></p>
+        <p class="m-0 px-2">/</p>
+        <p class="m-0">Signup Admin</p>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+  <div class="col-lg-7 mb-5 container">
+    <div class="contact-form">
+      <div id="success"></div>
+      <form [formGroup]="signupForm" >
+        <div class="control-group">
+          <input type="text" class="form-control" formControlName="firstName" placeholder="Your First Name"/>
+
+          <p class="help-block text-danger"></p>
+        </div>
+        <div *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].touched || signupForm.controls['firstName'].dirty)">
+          <div *ngIf="signupForm.controls['firstName'].errors.required" style="color: brown;">Name is required</div>
+          <div *ngIf="signupForm.controls['firstName'].errors.minlength" style="color: brown;">Name must have at least 3 chars</div>
+        </div>
+        <div class="control-group">
+            <input type="text" class="form-control" formControlName="lastName" placeholder="Your Last Name"/>
+
+            <p class="help-block text-danger"></p>
+          </div>
+          <div *ngIf="signupForm.controls['lastName'].invalid && 
+          (signupForm.controls['lastName'].touched || 
+          signupForm.controls['lastName'].dirty)">
+              <div *ngIf="signupForm.controls['lastName'].errors.required" style="color: red;">
+                  Last Name is required
+              </div>
+              <div *ngIf="signupForm.controls['lastName'].errors.minlength" style="color: red;">
+                  Last Name must have at least 5 chars
+              </div>
+          </div>
+          <div class="control-group">
+            <input type="email" class="form-control" formControlName="email" placeholder="Your email"/>
+            <p class="help-block text-danger"></p>
+          </div>
+          <div style="color: red;">{{errorMsg}}</div>
+          <div *ngIf="signupForm.controls['email'].invalid && 
+          (signupForm.controls['email'].touched || 
+          signupForm.controls['email'].dirty)">
+              <div *ngIf="signupForm.controls['email'].errors.required" style="color: red;">
+                  Email is required
+              </div>
+              <div *ngIf="signupForm.controls['email'].errors.email" style="color: red;">
+                  Invalid Email Format
+              </div>
+             
+          </div>
+          <div class="control-group">
+            <input type="password" class="form-control" formControlName="pwd" placeholder="Your Password"/>
+            <p class="help-block text-danger"></p>
+          </div>
+          <div *ngIf="signupForm.controls['pwd'].invalid && 
+          (signupForm.controls['pwd'].touched || 
+          signupForm.controls['pwd'].dirty)">
+              <div *ngIf="signupForm.controls['pwd'].errors.required" style="color: red;">
+                  Password is required
+              </div>
+              <div *ngIf="signupForm.controls['pwd'].errors.minlength" style="color: red;">
+                  Password must have at least 6 chars
+              </div>
+              <div *ngIf="signupForm.controls['pwd'].errors.maxlength" style="color: red;">
+                  Password must have at most 12 chars
+              </div>
+          </div>
+          <div>
+          <input type="password" class="form-control" formControlName="tel" placeholder="Your Tel"/>
+          <p class="help-block text-danger"></p>
+        </div>
+        
+        <div>
+          <button style="margin-left: 45%;" class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton"
+         (click)="signup()" [disabled]="signupForm.invalid">  Signup </button>
+        </div>
+      </form>
+    </div>
+  </div>

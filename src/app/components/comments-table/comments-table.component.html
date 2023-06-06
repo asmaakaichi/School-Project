@@ -1,0 +1,25 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Course</th>
+            <th scope="col">Teacher Name</th>
+            <th scope="col">Teacher Speciality</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of coursesTab">
+            <th scope="row">{{c._id}}</th>
+            <td>{{c.name}} </td>
+            <td>{{c.description}} </td>
+            <iframe  [src]='c.course | safe'></iframe>
+            <td>{{searchTeacher(c.teacherId)?.firstName}} {{searchTeacher(c.teacherId)?.lastName}} </td> 
+            <td>{{searchTeacher(c.teacherId)?.speciality}} </td> 
+           
+            
+           
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Tel</th>
+            <th scope="col">Affectation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of studentsTab">
+            <th scope="row">{{student.id}}</th>
+            <td>{{student.firstName}} {{student.lastName}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.tel}}</td>
+            <td>
+                <button class="btn btn-info" (click)="goTodisplayStudent(student.id)">Affectation</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

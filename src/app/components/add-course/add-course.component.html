@@ -1,0 +1,60 @@
+<!-- Header Start -->
+<div class="container-fluid bg-primary mb-5">
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
+      style="min-height: 400px"
+    >
+      <h3 class="display-3 font-weight-bold text-white">Add course</h3>
+      <div class="d-inline-flex text-white">
+        <p class="m-0"><a class="text-white" href="">Home</a></p>
+        <p class="m-0 px-2">/</p>
+        <p class="m-0">Add course</p>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+  <div class="col-lg-7 mb-5 container">
+    <div class="contact-form">
+      <div id="success"></div>
+      <form [formGroup]="courseForm">
+        <div class="control-group">
+          <input type="text" class="form-control" formControlName="name" placeholder="Name"/>
+          <p class="help-block text-danger"></p>
+        </div>
+        <div *ngIf="courseForm.controls['name'].invalid && (courseForm.controls['name'].touched || courseForm.controls['name'].dirty)">
+          <div *ngIf="courseForm.controls['name'].errors.required" style="color: brown;">Name is required</div>
+          <div *ngIf="courseForm.controls['name'].errors.minlength" style="color: brown;">Name must have at least 3 chars</div>
+        </div>
+        <div class="control-group">
+            <input type="text" class="form-control" formControlName="description" placeholder="Description"/>
+            <p class="help-block text-danger"></p>
+          </div>
+          <div *ngIf="courseForm.controls['description'].invalid && (courseForm.controls['description'].touched || courseForm.controls['description'].dirty)">
+            <div *ngIf="courseForm.controls['description'].errors.required" style="color: brown;">Description is required</div>
+            <div *ngIf="courseForm.controls['description'].errors.minlength" style="color: brown;">Description must have at least 5 chars</div>
+            <div *ngIf="courseForm.controls['description'].errors.maxlength" style="color: brown;">Description must have at more 60 chars</div>
+          </div>
+          <div class="control-group">
+            <input type="text" class="form-control" formControlName="modules" placeholder="Modules"/>
+            <p class="help-block text-danger"></p>
+          </div>
+          <div *ngIf="courseForm.controls['modules'].invalid && (courseForm.controls['modules'].touched || courseForm.controls['modules'].dirty)">
+            <div *ngIf="courseForm.controls['modules'].errors.required" style="color: brown;">Module is required</div>
+            <div *ngIf="courseForm.controls['modules'].errors.minlength" style="color: brown;">Module must have at least 3 chars</div>
+          </div>
+          <div class="control-group" style="visibility: hidden;">
+            <input type="file" class="form-control" #filePicker (change)="onImageSelected($event)"/>
+            <p class="help-block text-danger"></p> 
+          </div>
+          <div class="text-center">
+            <button class="btn btn-warning"  (click)="filePicker.click()">Select your Course</button>
+          </div>
+               <iframe [src]='filePreview | safe' style="margin-left: 30%; margin-top: 2%;" *ngIf="filePreview" ></iframe>
+         
+        
+        <div>
+          <button style="margin-left: 40%; margin-top: 2%;" class="btn btn-primary py-2 px-4" type="submit" (click)=addCourse()>Add course</button>
+        </div>
+      </form>
+    </div>
+  </div>
