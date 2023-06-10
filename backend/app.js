@@ -1,6 +1,9 @@
 //import express module
 const express = require("express");
 const client = require('twilio')('AC817b320efa0a5f1bfd8be1ec9b1fe9cd', 'c4817f831aface5297d7bb2ba84fa989');
+//Import Jsonwebtoken and authenticate
+const jwt = require("jsonwebtoken");
+const authenticate = require("./middelware/authenticate");
 // import body-parser module
 const bodyParser = require("body-parser");
 //import bcrypt module
@@ -148,6 +151,10 @@ app.post("/users/signup/teacher", multer({ storage: storageConfig }).single('cv'
       pwd: cryptedPwd,
       tel: req.body.tel,
       adress: req.body.adress,
+      location:{
+        type:"Point", 
+        coordinates:[parseFloat(req.body.longitude),parseFloat(req.body.latitude) ]
+      },
       speciality: req.body.speciality,
       role: req.body.role,
       cv: "http://localhost:3000/images/" + req.file.filename,
@@ -219,13 +226,25 @@ app.post("/users/login/all", (req, res) => {
       res.json({ message: "1" })
     }
     else {
+      const token = jwt.sign(
+        {
+        email: userToSend.email,
+        userId: userToSend._id,
+        userRole: userToSend.role,
+        },
+        "Testing",
+        { expiresIn: "1min" }
+        );
+        
       //obj {id,fN, lN, role}
       let user = {
         id: userToSend._id,
-        fName: userToSend.firstName,
-        lName: userToSend.lastName,
-        role: userToSend.role
-      }
+        firstName: userToSend.firstName,
+        lastName: userToSend.lastName,
+        role: userToSend.role,
+        jwt: token,
+        expiresIn: 60,
+      };
       res.json({ message: "2", user: user })
     }
   });
@@ -428,6 +447,11 @@ app.put("/users/updateUser/pwd", (req, res) => {
           });
           User.updateOne({ _id: req.body._id }, newUser).then((response) => {
             console.log("Here user after update pwd", response);
+            if (response.nModified == 1) {
+              res.json({ message: "Profile is updated with success" });
+            } else {
+              res.json({ message: "Error" });
+            };
           });
         });
       };
@@ -475,4 +499,12 @@ app.post("/messages", (req, res) => {
     // You can implement your fallback code here
     console.log(error);
   });
+});
+//Search Location
+app.post("/messages/search", (req,res)=>{
+console.log("Here teacher Name", req.body);
+User.findOne({firstName:req.body.firstName}).then((doc)=>{
+  console.log("Here doc", doc);
+  res.json({teacherObj:doc});
+})
 })

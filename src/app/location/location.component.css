@@ -1,0 +1,10 @@
+#map{
+    height: 60vh;
+    width: 80vh;
+    margin: auto;
+}
+.search{
+    position: absolute;
+    top: 82%;
+    left: 50%;
+}

@@ -12,6 +12,7 @@ export class EditProfileComponent implements OnInit {
 editForm:FormGroup;
 id:any;
 user:any={};
+msg:any=String;
   constructor(private fromBuilder:FormBuilder, private userService:UserService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
@@ -24,13 +25,17 @@ user:any={};
       tel:[""],
       adress:[""]
     });
-    this.id=this.activatedRoute.snapshot.paramMap.get("id");
+    this.id= localStorage.getItem('userId');
     this.userService.getUserById(this.id).subscribe((data)=>{
       this.user=data.user;
     })
   }
   edit(){
-    this.userService.editUser(this.user).subscribe()
+    this.userService.editUser(this.user).subscribe((data)=>{
+      this.msg=data.message;
+      console.log("Here msg", this.msg);
+      
+    })
   }
 
 }

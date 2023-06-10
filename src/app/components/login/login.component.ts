@@ -18,15 +18,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   signin() {
-  this.userService.login(this.login).subscribe((data)=>{
-  console.log("Here message after login:Message", data.message);
-  console.log("Here message after login:User", data.user);
-  if (data.message=="2") {
-  localStorage.setItem("userId", data.user.id);
-  localStorage.setItem("userRole", data.user.role)
-  } else {
-   this.errorMsg="Please check email or tel/pwd"
+    if (this.login.pwd && (this.login.email || this.login.tel)) {
+      this.userService.login(this.login);
+      }
+      
   }
-  })
 }
-}
+

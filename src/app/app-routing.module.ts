@@ -24,6 +24,7 @@ import { DisplayUserComponent } from './components/display-user/display-user.com
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { ParentDashboardComponent } from './components/parent-dashboard/parent-dashboard.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { LocationComponent } from './location/location.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
   {path:"about", component:AboutComponent},
   {path:"teachers", component:TeachersComponent},
   {path:"searchCourse", component:SearchComponent},
+  {path:"searchLocation", component:LocationComponent}
   
 ];
 

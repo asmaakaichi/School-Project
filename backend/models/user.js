@@ -17,7 +17,10 @@ const userSchema=mongoose.Schema({
     cv:String,
     teacherId:String,
     courseId:String,
-    
+    location:{
+        type:{type:String},
+        coordinates:[]
+    }
    
 });
 

@@ -1,0 +1,26 @@
+<!-- Header Start -->
+<div class="container-fluid bg-primary mb-5">
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
+      style="min-height: 400px"
+    >
+      <h3 class="display-3 font-weight-bold text-white">Search location by teacher name</h3>
+      <div class="d-inline-flex text-white">
+        <p class="m-0"><a class="text-white" href="">Home</a></p>
+        <p class="m-0 px-2">/</p>
+        <p class="m-0">Search location by teacher name</p>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+  <!-- Maps -->
+ <div id="map"></div>
+<form #searchForm="ngForm" (ngSubmit)="searchLocation()" >
+    <div class="leaflet-control search">
+        <input type="text" id="search" [(ngModel)]="search.firstName" name="firstName" placeholder="search location by teacher name">
+        <button id="search-btn">Search</button>
+        </div>
+</form>
+
+
+ <!-- End Maps -->

@@ -40,7 +40,7 @@ import { ClassComponent } from './components/class/class.component';
 import { TransformPipe } from './pipes/transform.pipe';
 import { WhitespacePipe } from './pipes/whitespace.pipe';
 import { SearchComponent } from './components/search/search.component';
-import {HttpClientModule  } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule  } from "@angular/common/http";
 import { SafePipe } from './pipes/safe.pipe';
 import { SignupParentComponent } from './components/signup-parent/signup-parent.component';
 import { DisplayUserComponent } from './components/display-user/display-user.component';
@@ -50,6 +50,8 @@ import { MarksParentTableComponent } from './components/marks-parent-table/marks
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 import { SendMessageComponent } from './components/send-message/send-message.component';
+import { InterceptorService } from './services/interceptor.service';
+import { LocationComponent } from './location/location.component';
 
 
 @NgModule({
@@ -99,6 +101,7 @@ import { SendMessageComponent } from './components/send-message/send-message.com
     MarksParentTableComponent,
     EditProfileComponent,
     SendMessageComponent,
+    LocationComponent,
    
   ],
   imports: [
@@ -109,7 +112,7 @@ import { SendMessageComponent } from './components/send-message/send-message.com
     HttpClientModule,
    
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,8 +24,12 @@ errorMsg:string;
       pwd:["", [Validators.required, Validators.minLength(6), Validators.maxLength(12)]],
       tel:[""],
       adress:[""],
+      longitude:[""],
+      latitude:[""],
       speciality:[""],
       cv:[""]
+      
+
       
      
     })

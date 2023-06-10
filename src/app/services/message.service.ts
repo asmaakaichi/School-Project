@@ -10,4 +10,7 @@ export class MessageService {
   sendMessage(obj){
     return this.httpClient.post(this.messageURL, obj);
   }
+  searchLocation(obj){
+    return this.httpClient.post<{teacherObj:any}>(this.messageURL+"/search", obj);
+  }
 }
